@@ -6,7 +6,7 @@ Shader "Unlit/OceanAnimated_2D"
         _MainTex ("Texture", 2D) = "white" {}
         _ScrollSpeed ("Scroll Speed", Float) = 0.1
         _WaveIntensity ("Wave Intensity", Float) = 0.01
-        _CurrentDirection ("Current Direction", Float) = 0
+        _CurrentDirection ("Current Direction", Vector ) = (1,0,0,0)
     }
     SubShader
     {
@@ -48,6 +48,7 @@ Shader "Unlit/OceanAnimated_2D"
             float4 _Color;
             float _ScrollSpeed;
             float _WaveIntensity;
+            float4 _CurrentDirection;
 
             v2f vert (appdata v)
             {
@@ -59,13 +60,12 @@ Shader "Unlit/OceanAnimated_2D"
 
             fixed4 frag (v2f i) : SV_Target //Logic code right here
             {
-                float2 playerOffSet = _PlayerPosition.xy * 0.1;
+
+                float2 playerOffSet = _PlayerPosition.xy * 0.1; //movement offset
                 float2 animatedUV = i.uv;                
-                
-                
-                animatedUV.x += playerOffSet.x * 0.5;
-                animatedUV.y += playerOffSet.y * 0.5;
-                animatedUV.x += _Time.y * _ScrollSpeed * 0.7;
+
+                animatedUV.x += _CurrentDirection.xy * (_Time.y * _ScrollSpeed) * 0.7; //constant water current with the current direction vector 
+                animatedUV += playerOffSet * 0.7; 
                 animatedUV.y += sin(_Time.y + i.uv.x * 10) * _WaveIntensity;
 
                 fixed4 col = tex2D(_MainTex, animatedUV);
