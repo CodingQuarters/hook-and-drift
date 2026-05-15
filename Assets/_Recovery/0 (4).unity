@@ -570,7 +570,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurrentSystem
   targetMaterial: {fileID: 2100000, guid: 5c689c1e542530c409e7244df4a7f8d9, type: 2}
-  randomValue: {x: 0, y: 0}
+  targetPosition: {x: 0, y: 0}
+  currentValue: {x: 0, y: 0}
+  minWaitTime: 40
+  maxWaitTime: 50
+  moveSpeed: 35
+  steps: 5
+  difference: {x: 0, y: 0}
+  normalDirection: {x: 0, y: 0}
 --- !u!4 &933313480
 Transform:
   m_ObjectHideFlags: 0

@@ -36,8 +36,8 @@ public class CurrentSystem : MonoBehaviour
         {
             difference = targetPosition - currentValue; // Calculate the distance between the current value and the target position
             normalDirection = difference.normalized; // Get the normalized direction from the current value to the target position
-            
-            currentValue += normalDirection * steps * Time.deltaTime; // Adjust the 0.1f value to control the speed of the transition (higher values will make it faster, lower values will make it slower)
+            normalDirection = normalDirection / moveSpeed; // Scale the normalized direction by the move speed to control how fast the current value moves towards the target position
+            currentValue += normalDirection * Time.deltaTime; // Adjust the 0.1f value to control the speed of the transition (higher values will make it faster, lower values will make it slower)
             targetMaterial.SetVector("_CurrentDirection", currentValue); // Update the material with the new current value
 
         }
