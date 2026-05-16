@@ -19,9 +19,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float clickCooldown = 2f; // Cooldown time in seconds between clicks
     [SerializeField] private float targetLength = 5f; // Target length for the line animation
     private float lastClickTime;
-    public float helloWo;
-    
     public Vector2 RandomValue;
+    public Vector2 pushVelocity; // This variable will be updated by the current system to influence the player's position based on the current direction and strength.
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -47,6 +46,8 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate() // FixedUpdate is used for physics updates, which is where we want to handle the raycasting and movement logic.
     {
+        Debug.Log("Current push velocity: " + pushVelocity); // Log the current push velocity for debugging purposes
+        rb.AddForce(pushVelocity*10); // Apply the push velocity from the current system to the player's position, allowing the current system to influence the player's movement
         origin = (Vector2)transform.position;
         Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, Camera.main.nearClipPlane));
