@@ -46,7 +46,7 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate() // FixedUpdate is used for physics updates, which is where we want to handle the raycasting and movement logic.
     {
-        Debug.Log("Current push velocity: " + pushVelocity); // Log the current push velocity for debugging purposes
+        //Debug.Log("Current push velocity: " + pushVelocity); // Log the current push velocity for debugging purposes
         rb.AddForce(pushVelocity*10); // Apply the push velocity from the current system to the player's position, allowing the current system to influence the player's movement
         origin = (Vector2)transform.position;
         Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
