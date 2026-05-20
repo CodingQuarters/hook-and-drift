@@ -5,7 +5,7 @@ public class GrapplerLine : MonoBehaviour
     public GameObject linePrefab; // Prefab for the line renderer
     public void Animate(float targetLength, float extendTime = 0.15f, float holdTime = 0.3f)
     {
-        Debug.Log("Animating line with target length: " + targetLength);
+        //Debug.Log("Animating line with target length: " + targetLength);
         StartCoroutine(AnimateLine(targetLength, extendTime, holdTime));
     }
 

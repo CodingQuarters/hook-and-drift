@@ -5,7 +5,7 @@ public class WorldGenerator : MonoBehaviour
 {
     public int seed = 12345; // The seed for the random number generator, which will be used to ensure that the same world is generated each time with the same seed
     public List<GameObject> chunkTemplates; // A list of chunk templates that can be used to generate the world, allowing for a variety of different chunks to be included in the world generation process
-    public float chunkSize = 20f; // The size of each chunk, which will be used to determine how far apart to place the chunks when generating the world
+    public float chunkSize = 40f; // The size of each chunk, which will be used to determine how far apart to place the chunks when generating the world
     public Transform playerTransform; // The current position of the player, which will be used to determine which chunks to spawn around the player
     public Dictionary<Vector2Int, GameObject> spawnedChunks = new Dictionary<Vector2Int, GameObject>(); // A dictionary to keep track of the spawned chunks, using the chunk index as the key and the spawned chunk GameObject as the value, allowing for easy access and management of the spawned chunks in the world
     // Update is called once per frame
@@ -15,21 +15,34 @@ public class WorldGenerator : MonoBehaviour
         if (playerTransform == null) return;
         int currentChunkX = Mathf.FloorToInt(playerTransform.position.x / chunkSize); // Calculate the current chunk index on the x-axis based on the player's position and the chunk size
         int currentChunkY = Mathf.FloorToInt(playerTransform.position.y / chunkSize); // Calculate the current chunk index on the y-axis based on the player's position and the chunk size
-        Vector2Int currentChunkKey = new Vector2Int(currentChunkX, currentChunkY); // check our cordinate key
-        if (!spawnedChunks.ContainsKey(currentChunkKey)) 
-       {
-            GameObject newChunk = SpawnChunk(currentChunkX, currentChunkY); // If the chunk has not been spawned, call the SpawnChunk method to generate and spawn the chunk at the current index
-            spawnedChunks.Add(currentChunkKey, newChunk);
+        for (int xOffSet = -1; xOffSet <= 1; xOffSet++)
+        {
+        for (int yOffSet = -1; yOffSet <= 1; yOffSet++)
+            {
+                int targetX = currentChunkX + xOffSet;
+                int targetY = currentChunkY + yOffSet;
+                Vector2Int neighborChunkKey = new Vector2Int(targetX, targetY);
+                if (!spawnedChunks.ContainsKey(neighborChunkKey)) 
+                {
+                    GameObject newChunk = SpawnChunk(targetX, targetY); // If the chunk has not been spawned, call the SpawnChunk method to generate and spawn the chunk at the current index
+                    spawnedChunks.Add(neighborChunkKey, newChunk);
+                }
 
+            }
         }
+
     }
     GameObject SpawnChunk(int chunkX, int chunkY)
     {
+        
         Vector3 worldPosition = new Vector3(chunkX * chunkSize, chunkY * chunkSize, 0); // we need to calculate the world position for unity to place it, ex: if chunkX = 2 and chunkSize is 10, then worldX is 20
-        Debug.Log(worldPosition);
-        GameObject randomTemplate = chunkTemplates[0]; // just grabbing the first one for now
+        int uniqueChunkSeed = seed + chunkX + (chunkY * 1000);
+        Random.InitState(uniqueChunkSeed);
+        int numberGrabbing = Random.Range(0, chunkTemplates.Count);
+        GameObject randomTemplate = chunkTemplates[numberGrabbing]; // just grabbing the first one for now
         
         GameObject newChunkObject = Instantiate(randomTemplate, worldPosition, Quaternion.identity); // spawn logic
+        Debug.Log($"Spawned a chunk at {worldPosition} : {newChunkObject}");
         return newChunkObject; // returns to the main loop
     }
 }
