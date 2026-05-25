@@ -266,9 +266,10 @@ GameObject:
   m_Component:
   - component: {fileID: 761827185}
   - component: {fileID: 761827184}
-  - component: {fileID: 761827183}
   - component: {fileID: 761827186}
   - component: {fileID: 761827187}
+  - component: {fileID: 761827189}
+  - component: {fileID: 761827188}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -276,28 +277,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &761827183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761827182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86888ca2590ddd141ae30c4774da1d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  moveForce: 1.5
-  maxSpeed: 3
-  linearDrag: 0.5
-  MaxDistance: 10
-  linePrefab: {fileID: 579063568511216841, guid: 05f34dab061199649adcbe9d3dbdc024, type: 3}
-  pullForce: 10
-  clickCooldown: 2
-  targetLength: 1.33
-  RandomValue: {x: 0, y: 0}
-  pushVelocity: {x: 0, y: 0}
 --- !u!212 &761827184
 SpriteRenderer:
   serializedVersion: 2
@@ -402,7 +381,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 761827183}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -496,6 +475,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &761827188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761827182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ac4be9155cdc24186b6ec4a6751cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!232 &761827189
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761827182}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 1
+  m_Distance: 0.005
+  m_MaxDistanceOnly: 0
 --- !u!1 &933313478
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +539,6 @@ MonoBehaviour:
   targetMaterial: {fileID: 2100000, guid: 5c689c1e542530c409e7244df4a7f8d9, type: 2}
   targetPosition: {x: 0, y: 0}
   currentValue: {x: 0, y: 0}
-  playerScript: {fileID: 761827183}
   minWaitTime: 5
   maxWaitTime: 10
   moveSpeed: 5
