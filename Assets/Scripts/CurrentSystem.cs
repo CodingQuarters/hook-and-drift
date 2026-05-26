@@ -8,7 +8,7 @@ public class CurrentSystem : MonoBehaviour
     public Material targetMaterial; // Reference to the material that will be affected by the current system
     public Vector2 targetPosition;// the targeted position
     public Vector2 currentValue; // what the shader is currently displaying 
-    //public PlayerScript playerScript; // Reference to the player script, which will be used to influence the player's position 
+    public GrappleTetherController playerScript; // Reference to the player script, which will be used to influence the player's position 
     [Header("Timing")]
     public float minWaitTime = 5f;
     public float maxWaitTime = 15f;
@@ -42,7 +42,7 @@ public class CurrentSystem : MonoBehaviour
             velocity = difference / moveSpeed; // Calculate the velocity to move towards the target position based on the difference and move speed
             currentValue += velocity * Time.deltaTime; // Scale the normalized direction by the move speed to control how fast the current value moves towards the target position
             targetMaterial.SetVector("_CurrentDirection", currentValue); // Update the material with the new current value
-            //playerScript.pushVelocity = velocity; // Update the player script with the new shift value, allowing the player's position to be influenced by the current system
+            playerScript.pushVelocity = velocity; // Update the player script with the new shift value, allowing the player's position to be influenced by the current system
 
         }
         

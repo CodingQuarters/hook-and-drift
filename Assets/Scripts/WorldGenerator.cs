@@ -10,7 +10,7 @@ public class WorldGenerator : MonoBehaviour
     public Dictionary<Vector2Int, GameObject> spawnedChunks = new Dictionary<Vector2Int, GameObject>(); // A dictionary to keep track of the spawned chunks, using the chunk index as the key and the spawned chunk GameObject as the value, allowing for easy access and management of the spawned chunks in the world
     // Update is called once per frame
 
-    void Update() // a chunk will be 20 x 20 units, which means that from x = 0 to x = 20 will be chunk 0, from x = 20 to x = 40 will be chunk 1, and so on. The same applies for the y-axis. This way, we can easily determine which chunk the player is currently in based on their position, and spawn the appropriate chunks around them.
+    void FixedUpdate() // a chunk will be 20 x 20 units, which means that from x = 0 to x = 20 will be chunk 0, from x = 20 to x = 40 will be chunk 1, and so on. The same applies for the y-axis. This way, we can easily determine which chunk the player is currently in based on their position, and spawn the appropriate chunks around them.
     {
         if (playerTransform == null) return;
         int currentChunkX = Mathf.FloorToInt(playerTransform.position.x / chunkSize); // Calculate the current chunk index on the x-axis based on the player's position and the chunk size
