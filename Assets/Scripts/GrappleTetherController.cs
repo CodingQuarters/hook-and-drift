@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -62,6 +61,7 @@ public class GrappleTetherController : MonoBehaviour
     public void FixedUpdate()
     {
         rb.AddForce(pushVelocity*10, ForceMode2D.Force);
+
     }
 
 }

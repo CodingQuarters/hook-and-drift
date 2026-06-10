@@ -1,12 +1,15 @@
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject Text;
+    public GameObject YouWin;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        YouWin.SetActive(false);
         Text.SetActive(false);
         Time.timeScale = 1;
     }
@@ -22,5 +25,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("text shown");
         Time.timeScale = 0;
     }
-    
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void YouWon()
+    {
+        YouWin.SetActive(true);
+        Debug.Log("the player won");
+        Time.timeScale = 0;
+    }
 }
