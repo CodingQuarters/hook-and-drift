@@ -3,14 +3,15 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
-    public GameObject Text;
+    public GameObject YouDie;
     public GameObject YouWin;
-
+    public GameObject Restart;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         YouWin.SetActive(false);
-        Text.SetActive(false);
+        YouDie.SetActive(false);
+        Restart.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -21,7 +22,8 @@ public class GameManager : MonoBehaviour
     }
     public void PlayerDies()
     {
-        Text.SetActive(true);
+        YouDie.SetActive(true);
+        Restart.SetActive(true);
         Debug.Log("text shown");
         Time.timeScale = 0;
     }
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
     public void YouWon()
     {
         YouWin.SetActive(true);
+        Restart.SetActive(true);
         Debug.Log("the player won");
         Time.timeScale = 0;
     }
