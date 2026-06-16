@@ -20,7 +20,7 @@ public class NewCurrentManager : MonoBehaviour
         if (other.transform == Player)
         {
             // gameObject refers to the current this script is attached to
-            if (gameObject.CompareTag("RightCurrent"))
+            if (gameObject.CompareTag("rightCurrent"))
             {
                 MovePlayerRight();
             }
@@ -42,15 +42,15 @@ public class NewCurrentManager : MonoBehaviour
             if (obj == null) continue;
 
             // CompareTag is highly optimized in Unity
-            if (obj.CompareTag("RightCurrent")) 
+            if (obj.CompareTag("rightCurrent")) 
             {
                 Debug.Log("Found the right current! Restoring health...");
             }
-            else if (obj.CompareTag("UpCurrent")) 
+            else if (obj.CompareTag("upCurrent")) 
             {
                 Debug.Log("Found the upCurrent!");
             }
-            else if (obj.CompareTag("DownCurrent")) 
+            else if (obj.CompareTag("downCurrent")) 
             {
                 Debug.Log($"Collecting item: {obj.name}");
             }

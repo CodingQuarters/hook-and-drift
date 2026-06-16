@@ -13,7 +13,8 @@ public class GrappleTetherController : MonoBehaviour
     private LineRenderer lineRenderer;
     void Start()
     {
-        distanceJoint = gameObject.AddComponent<DistanceJoint2D>();
+        distanceJoint = gameObject.GetComponent<DistanceJoint2D>();
+        distanceJoint.enableCollision = true;
         rb = GetComponent<Rigidbody2D>();
         distanceJoint.connectedAnchor = new Vector2(5,50);
         lineRenderer = GetComponent<LineRenderer>();
@@ -36,16 +37,16 @@ public class GrappleTetherController : MonoBehaviour
             
             if (hit2D.collider != null )
             {
-                Transform parentTransform = hit2D.collider.transform.parent;
-                if (parentTransform != null && parentTransform.CompareTag("Template"))
-                {           
-                    lineRenderer.SetPosition(1,hit2D.point); // if the line hits a collider, end the line at that point
+                if (hit2D.collider.transform.CompareTag("Rocks"))
+                {   
+
 
                     Debug.Log($"Hit 2d object : {hit2D.collider.name}");
                     distanceJoint.connectedAnchor = hit2D.collider.transform.position;
                     distanceJoint.autoConfigureDistance= true;
                     lineRenderer.enabled = true;
                     distanceJoint.enabled = true;
+                    lineRenderer.SetPosition(1,hit2D.point); // if the line hits a collider, end the line at that point
                 }
             }
             else

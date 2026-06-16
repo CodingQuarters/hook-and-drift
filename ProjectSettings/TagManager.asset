@@ -9,6 +9,7 @@ TagManager:
   - downCurrent
   - leftCurrent
   - Template
+  - Rocks
   layers:
   - Default
   - TransparentFX

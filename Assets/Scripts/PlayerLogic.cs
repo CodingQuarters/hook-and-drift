@@ -4,19 +4,38 @@ public class PlayerLogic : MonoBehaviour
 {
     public GameManager gameManager; 
     public Transform portal;
+    private Rigidbody2D rb;
+    public float forceAmount = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
-
+ 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("What's up??");
-        gameManager.PlayerDies();
+        Debug.Log("tried, but didn't work");
+        if (collision.gameObject.CompareTag("Rocks"))
+        {   
+            Debug.Log("What's up??"); //
+            gameManager.PlayerDies();
+        }
+        else
+        {
+            Debug.Log(collision.gameObject.tag);
+        }
+        
 
     }
-    
+    /*
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Debug.Log("Touching but not the right current");
+        if (collision.gameObject.CompareTag("rightCurrent"))
+        {
+           Debug.Log("Still touching...");
+        }
+    }*/
     // Update is called once per frame
     void Update()
     {
@@ -25,5 +44,10 @@ public class PlayerLogic : MonoBehaviour
             Debug.Log("You WIN YOU WIN YOU WIN");
             gameManager.YouWon();
         }
+    }
+    void FixedUpdate()
+    {
+        rb.WakeUp(); // forces Unity to calculate the rb every frame
+
     }
 }
