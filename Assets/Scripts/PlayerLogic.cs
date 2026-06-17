@@ -14,10 +14,8 @@ public class PlayerLogic : MonoBehaviour
  
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("tried, but didn't work");
         if (collision.gameObject.CompareTag("Rocks"))
         {   
-            Debug.Log("What's up??"); //
             gameManager.PlayerDies();
         }
         else

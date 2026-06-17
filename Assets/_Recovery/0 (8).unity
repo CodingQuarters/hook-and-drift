@@ -946,13 +946,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692704861}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.11414057, y: 0.01157366, z: 0.0013298058, w: 0.9933963}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.4167, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9155248}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -13.109, y: 1.335, z: 0}
 --- !u!212 &692704863
 SpriteRenderer:
   serializedVersion: 2
@@ -1753,13 +1753,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988076762}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.223, y: 0.003, z: 0}
+  m_LocalRotation: {x: 0.09293504, y: 0.015699012, z: 0.0018050978, w: 0.9955468}
+  m_LocalPosition: {x: 1.2230006, y: 0.003000015, z: 0.00000011278544}
   m_LocalScale: {x: 1, y: 1.8806378, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9155248}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.66, y: 1.842, z: 0.38}
 --- !u!212 &988076764
 SpriteRenderer:
   serializedVersion: 2
@@ -2303,6 +2303,15 @@ MonoBehaviour:
   YouDie: {fileID: 731185478}
   YouWin: {fileID: 1457416199}
   Restart: {fileID: 2010403640}
+  arrowPrefab: {fileID: 5546535262843280566, guid: bf4884417a2f7ff4896858fbc53bd526, type: 3}
+  currents:
+  - {fileID: 692704861}
+  - {fileID: 1714624702}
+  - {fileID: 988076762}
+  stepX: 5
+  stepY: 4
+  driftSpeed: 1.5
+  startY: 0
 --- !u!4 &1208239718
 Transform:
   m_ObjectHideFlags: 0
@@ -2938,7 +2947,7 @@ AreaEffector2D:
     m_Bits: 4294967295
   m_UseGlobalAngle: 0
   m_ForceAngle: 0
-  m_ForceMagnitude: 5.92
+  m_ForceMagnitude: 5
   m_ForceVariation: 0
   m_ForceTarget: 0
   m_LinearDamping: 0
