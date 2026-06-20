@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject YouDie;
     public GameObject YouWin;
     public GameObject Restart;
+    public GameObject nextLevel;
     [Header("Spawning Currents Arrow")]
     public GameObject arrowPrefab;
     public List<GameObject> currents;
@@ -23,31 +24,32 @@ public class GameManager : MonoBehaviour
     public float driftSpeed = 1.5f;
     public float startY;
 
-    public class objectData
+    public class arrowData
     {
-        public float vitesse = 5.0f;
-        public float angle = 5.0f;
+        public float speedf = 5.0f;
+        public float directionAngle = 5.0f;
         public float positionEndX;
         public float positionStartX;
         public float positionEndY;
         public float positionStartY;
-        public objectData(float speed, float rotation, float endX, float startX, float startY, float endY)
+        public arrowData(float speed, float rotation, float endX, float startX, float startY, float endY)
         {
-            vitesse = speed;
-            angle = rotation;
+            speedf = speed;
+            directionAngle = rotation;
             positionEndX = endX;
             positionStartX = startX;
             positionEndY = endY;
             positionStartY = startY;
         }
     }
-    private Dictionary<GameObject, objectData> objectRegistry = new Dictionary<GameObject, objectData>();
+    private Dictionary<GameObject, arrowData> objectRegistry = new Dictionary<GameObject, arrowData>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         YouWin.SetActive(false);
         YouDie.SetActive(false);
         Restart.SetActive(false);
+        nextLevel.SetActive(false);
         Time.timeScale = 1;
         SpriteRenderer arrowSpriteRenderer = arrowPrefab.GetComponent<SpriteRenderer>();
         float arrowHeight = arrowSpriteRenderer.bounds.size.x;
@@ -65,15 +67,15 @@ public class GameManager : MonoBehaviour
             float finalY = gameObjectPosition.y + (gameObjectHeight/2f) - arrowHeight;
             
             AreaEffector2D areaEffector2D = gameObject.GetComponent<AreaEffector2D>();
-            float angle = areaEffector2D.forceAngle;
+            float directionAngle = areaEffector2D.forceAngle;
             float speed = areaEffector2D.forceMagnitude;
-            for (int i = 0; i < gameObjectHeight; i += stepY)
+            for (float i = 0; i < gameObjectHeight; i += stepY)
             {
-                for (int e = 0; e < gameObjectWidth; e += stepX)
+                for (float e = 0; e < gameObjectWidth; e += stepX)
                 {
                     Vector3 spawnPosition = new Vector3(startX + e, startY + i, 0);
-                    GameObject newObject = Instantiate(arrowPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
-                    objectData customData = new objectData(speed, angle, finalX, startX, startY, finalY);
+                    GameObject newObject = Instantiate(arrowPrefab, spawnPosition, Quaternion.Euler(0, 0, directionAngle));
+                    arrowData customData = new arrowData(speed, directionAngle, finalX, startX, startY, finalY);
                     objectRegistry.Add(newObject, customData);
                 }
             }
@@ -83,17 +85,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (KeyValuePair<GameObject, objectData> obj in objectRegistry)
+        foreach (KeyValuePair<GameObject, arrowData> obj in objectRegistry)
         {
             GameObject gameObject = obj.Key;
-            objectData data = obj.Value;
+            arrowData data = obj.Value;
             
 
             if (gameObject != null)
             {
-                float angle = data.angle;
-                Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
-                gameObject.transform.position += direction * data.vitesse * Time.deltaTime;
+                float directionAngle = data.directionAngle;
+                Vector3 direction = Quaternion.Euler(0, 0, directionAngle) * Vector3.right;
+                gameObject.transform.position += direction * data.speedf * Time.deltaTime;
             }
 
             if (gameObject.transform.position.x > data.positionEndX)
@@ -122,7 +124,12 @@ public class GameManager : MonoBehaviour
     public void YouWon()
     {
         YouWin.SetActive(true);
-        Restart.SetActive(true);
+        nextLevel.SetActive(true);
         Time.timeScale = 0;
+    }
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1;
     }
 }

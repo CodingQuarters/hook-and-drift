@@ -39,7 +39,6 @@ public class PlayerLogic : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, portal.position) < 2.5f)
         {
-            Debug.Log("You WIN YOU WIN YOU WIN");
             gameManager.YouWon();
         }
     }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 529886449badac149965285c03a34d5e
+guid: 4c4ba8e78d50b7d46bac455d2c8817d0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5621275025976656576
-    second: Arrow1_0
+      213: 5009964415554053473
+    second: player_survivor_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 10
+  spritePixelsToUnits: 5
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arrow1_0
+      name: player_survivor_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 26
-        width: 19
-        height: 12
+        x: 3
+        y: 0
+        width: 26
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 04df2eb85283df1b0800000000000000
-      internalID: -5621275025976656576
+      spriteID: 165627e8718f68540800000000000000
+      internalID: 5009964415554053473
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arrow1_0: -5621275025976656576
+      player_survivor_0: 5009964415554053473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -33,6 +33,7 @@ public class GrappleTetherController : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(mousePos); // this is for the ray 
 
             RaycastHit2D hit2D = Physics2D.Raycast(worldPoint, Vector2.zero, castDistance, targetLayer); 
+            Debug.Log(hit2D.collider);
             lineRenderer.SetPosition(0, worldPoint);
             
             if (hit2D.collider != null )
