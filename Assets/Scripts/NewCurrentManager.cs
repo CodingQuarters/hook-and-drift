@@ -22,6 +22,7 @@ public class NewCurrentManager : MonoBehaviour
             // gameObject refers to the current this script is attached to
             if (gameObject.CompareTag("rightCurrent"))
             {
+                
                 MovePlayerRight();
             }
         }
@@ -31,7 +32,7 @@ public class NewCurrentManager : MonoBehaviour
         if (playerRb != null)
         {
             // Physics-based movement (Best practice)
-            playerRb.linearVelocity = new Vector2(5f, playerRb.linearVelocity.y);
+           // playerRb.linearVelocity = new Vector2(5f, playerRb.linearVelocity.y);
         }
 
     }

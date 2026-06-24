@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Recovery/0 (8).unity
     guid: 37b9dcc2fa8fd954596ea4c4e8e3aaad
   - enabled: 1

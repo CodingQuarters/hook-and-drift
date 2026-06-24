@@ -1,14 +1,7 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using Unity.Burst;
-using Unity.VisualScripting;
-using UnityEngine.Rendering;
-using Unity.Collections.LowLevel.Unsafe;
-using Unity.Collections;
-using System;
-using UnityEngine.UIElements;
+using Mono.Cecil.Cil;
 public class GameManager : MonoBehaviour
 {
     [Header("UI Manager")]
@@ -16,6 +9,9 @@ public class GameManager : MonoBehaviour
     public GameObject YouWin;
     public GameObject Restart;
     public GameObject nextLevel;
+    public GameObject player;
+    public PlayerLogic playerLogicScript;
+    public Vector2 newSpawn;
     [Header("Spawning Currents Arrow")]
     public GameObject arrowPrefab;
     public List<GameObject> currents;
@@ -85,6 +81,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        newSpawn = playerLogicScript.newSpawn;
         foreach (KeyValuePair<GameObject, arrowData> obj in objectRegistry)
         {
             GameObject gameObject = obj.Key;
@@ -113,9 +110,7 @@ public class GameManager : MonoBehaviour
     }
     public void PlayerDies()
     {
-        YouDie.SetActive(true);
-        Restart.SetActive(true);
-        Time.timeScale = 0;
+        player.transform.position = newSpawn;
     }
     public void ResetScene()
     {

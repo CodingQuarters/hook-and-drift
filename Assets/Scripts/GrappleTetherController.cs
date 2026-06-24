@@ -11,6 +11,7 @@ public class GrappleTetherController : MonoBehaviour
     private Rigidbody2D rb;
     private DistanceJoint2D distanceJoint;
     private LineRenderer lineRenderer;
+    private PlayerLogic playerLogicScript;
     void Start()
     {
         distanceJoint = gameObject.GetComponent<DistanceJoint2D>();
@@ -70,7 +71,8 @@ public class GrappleTetherController : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        rb.AddForce(pushVelocity*10, ForceMode2D.Force);
+        //rb.AddForce(pushVelocity*10, ForceMode2D.Force);
+        //Debug.Log(pushVelocity);
 
     }
 

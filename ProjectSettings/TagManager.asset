@@ -10,6 +10,7 @@ TagManager:
   - leftCurrent
   - Template
   - Rocks
+  - Portal
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Water
   - UI
   - Currents
-  - 
+  - Ignore It
   - 
   - 
   - 
