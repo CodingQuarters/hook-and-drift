@@ -17,6 +17,8 @@ public class PlayerLogic : MonoBehaviour
     public Vector3 mousePos;
     public GrappleTetherController grappleTetherController;
     public Rigidbody2D rigidbody2D;
+    private CircleCollider2D portalCollider;
+    public LineDrawer lineDrawer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +27,7 @@ public class PlayerLogic : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         myAnimator.SetBool("StopAnim", true);
+
     }
  
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,6 +38,7 @@ public class PlayerLogic : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Portal"))
         {
+            portalCollider = collision.gameObject.GetComponent<CircleCollider2D>();
             portal = collision.gameObject;
             newSpawn = new Vector2(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y);
             StartCoroutine(TriggerMyAnimation());
@@ -52,12 +56,13 @@ public class PlayerLogic : MonoBehaviour
     }
     IEnumerator TriggerMyAnimation()
     {
-        gameObject.layer = 7;
+        lineDrawer.canGrapple = false;
         stayLocked = true;
-        portal.SetActive(false);
+        portalCollider.enabled = false;
         myAnimator.SetTrigger("PlayAnim");
         myAnimator.SetBool("StopAnim", false);
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        lineDrawer.canGrapple = true;
         myAnimator.SetBool("StopAnim", true);
         yield return new WaitForEndOfFrame();
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -66,8 +71,8 @@ public class PlayerLogic : MonoBehaviour
         stayLocked = false;
         rb.AddForce(direction*10, ForceMode2D.Impulse);
         Debug.Log(direction*10);
-        gameObject.layer = 0;        
         yield return new WaitForSeconds(1);
-        portal.SetActive(true);
+        portalCollider.enabled = true;
+
     }
 }

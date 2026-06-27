@@ -11,6 +11,7 @@ TagManager:
   - Template
   - Rocks
   - Portal
+  - Currents
   layers:
   - Default
   - TransparentFX

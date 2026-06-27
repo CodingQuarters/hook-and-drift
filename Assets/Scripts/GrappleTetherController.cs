@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-
 
 public class GrappleTetherController : MonoBehaviour
 {
@@ -34,7 +32,6 @@ public class GrappleTetherController : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(mousePos); // this is for the ray 
 
             RaycastHit2D hit2D = Physics2D.Raycast(worldPoint, Vector2.zero, castDistance, targetLayer); 
-            Debug.Log(hit2D.collider);
             lineRenderer.SetPosition(0, worldPoint);
             
             if (hit2D.collider != null )
@@ -43,7 +40,6 @@ public class GrappleTetherController : MonoBehaviour
                 {   
 
 
-                    Debug.Log($"Hit 2d object : {hit2D.collider.name}");
                     distanceJoint.connectedAnchor = hit2D.collider.transform.position;
                     distanceJoint.autoConfigureDistance= true;
                     lineRenderer.enabled = true;

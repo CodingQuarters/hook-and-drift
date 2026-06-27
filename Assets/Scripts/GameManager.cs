@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using Mono.Cecil.Cil;
 public class GameManager : MonoBehaviour
 {
     [Header("UI Manager")]
@@ -42,6 +41,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currents = new List<GameObject>(GameObject.FindGameObjectsWithTag("Currents"));
         YouWin.SetActive(false);
         YouDie.SetActive(false);
         Restart.SetActive(false);
@@ -104,6 +104,17 @@ public class GameManager : MonoBehaviour
             {
                 float positionX = gameObject.transform.position.x;
                 gameObject.transform.position = new Vector3(positionX, data.positionStartY, 0);
+
+            }
+            else if (gameObject.transform.position.x < data.positionStartX)
+            {
+                float positionY = gameObject.transform.position.y;
+                gameObject.transform.position = new Vector3(data.positionEndX, positionY, 0);
+            }
+            else if (gameObject.transform.position.y < data.positionStartY)
+            {
+                float positionX = gameObject.transform.position.x;
+                gameObject.transform.position = new Vector3(positionX, data.positionEndY, 0);
 
             }
         }
