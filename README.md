@@ -1,6 +1,3 @@
-![Project Status: Abandoned](https://shields.io)
-![Maintenance: Unmaintained](https://shields.io)
-
 # [DEPRECATED] Hook & Drift
 
 **This project is no longer maintained.** 
